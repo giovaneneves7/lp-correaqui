@@ -1,112 +1,205 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ChevronUp, Facebook, Instagram, Twitter } from "lucide-react";
+// import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Linkedin, Twitter } from "lucide-react";
+import { useState } from "react";
 
-const footerLinks = {
-  PRODUTOS: [
-    { name: "App Mobile", href: "#" },
-    { name: "Para Empresas", href: "#" },
-    { name: "Integrações", href: "#" },
-    { name: "API", href: "#" },
-  ],
-  DADOS: [
-    { name: "Estatísticas", href: "#" },
-    { name: "Relatórios", href: "#" },
-    { name: "Análises", href: "#" },
-  ],
-  APRENDA: [
-    { name: "Como Funciona", href: "#" },
-    { name: "Guia de Uso", href: "#" },
-    { name: "Blog", href: "#" },
-  ],
-  EMPRESA: [
-    { name: "Sobre", href: "#" },
-    { name: "Time", href: "#" },
-    { name: "Carreiras", href: "#" },
-    { name: "Legal", href: "#" },
-  ],
-  "FALE CONOSCO": [
-    { name: "Suporte", href: "#" },
-    { name: "Imprensa", href: "#" },
-    { name: "Status", href: "#" },
-  ],
-};
+export function Footer() {
+  const [email, setEmail] = useState("");
 
-export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+    console.log("Subscribe:", email);
+    setEmail("");
+  };
+
   return (
-    <footer className="bg-gray-50 border-t">
+    <footer className="bg-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-8">
-          <div className="md:col-span-1">
-            <Link href="/" className="text-2xl font-bold text-bgSecondary">
-              Corre Aqui
-            </Link>
-            <p className="mt-4 text-sm text-gray-500">
-              © 2024 Corre Aqui
-              <br />
-              LTDA.
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Brand Section */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              {/* <Image
+                src="/placeholder.svg?text=CA"
+                alt="Corre Aqui Logo"
+                width={40}
+                height={40}
+                className="rounded"
+              /> */}
+              <span className="text-xl font-bold">Corre Aqui</span>
+            </div>
+            <p className="text-gray-600 max-w-sm">
+              Sua ferramenta essencial para encontrar as melhores ofertas.
+              Economize tempo e dinheiro com o Corre Aqui, seu companheiro de
+              compras inteligentes.
             </p>
+            <div className="flex gap-4">
+              <Link
+                href="#"
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Twitter className="h-5 w-5" />
+                <span className="sr-only">Twitter</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </Link>
+              <Link
+                href="#"
+                className="text-gray-600 hover:text-blue-600 transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </Link>
+            </div>
           </div>
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h3 className="font-semibold text-sm text-gray-900 mb-4">
-                {category}
-              </h3>
+
+          {/* Subscribe Section */}
+          <div className="lg:px-8">
+            <h3 className="text-lg font-semibold mb-2">Inscreva-se</h3>
+            {/* <p className="text-gray-600 mb-4">e ganhe 10% de desconto!</p> */}
+            <form onSubmit={handleSubscribe} className="space-y-4">
+              <Input
+                type="email"
+                placeholder="Digite seu email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full max-w-sm"
+                required
+              />
+              <Button
+                type="submit"
+                className="w-full max-w-sm bg-red-500 hover:bg-red-600"
+              >
+                Inscrever-se
+              </Button>
+            </form>
+          </div>
+
+          {/* Links Section */}
+          <div className="grid grid-cols-2 gap-8 lg:gap-16">
+            <div>
+              <h3 className="font-semibold mb-4">Menu</h3>
               <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-500 hover:text-bgSecondary transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link
+                    href="/"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/servicos"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Serviços
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/recursos"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Recursos
+                  </Link>
+                </li>
+                <li>
+                  {/* <Link
+                    href="/precos"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Preços
+                  </Link> */}
+                </li>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Blog
+                  </Link>
+                </li>
               </ul>
             </div>
-          ))}
-        </div>
-        <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center space-x-4">
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-bgSecondary transition-colors"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span className="sr-only">LinkedIn</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-bgSecondary transition-colors"
-            >
-              <Facebook className="w-5 h-5" />
-              <span className="sr-only">Facebook</span>
-            </Link>
-            <Link
-              href="#"
-              className="text-gray-400 hover:text-bgSecondary transition-colors"
-            >
-              <Twitter className="w-5 h-5" />
-              <span className="sr-only">Twitter</span>
-            </Link>
-          </div>
-          <div className="flex flex-wrap justify-center md:justify-end items-center gap-4 text-sm text-gray-500">
-            <Link href="#" className="hover:text-bgSecondary transition-colors">
-              Termos e condições
-            </Link>
-            <span className="hidden md:inline">•</span>
-            <Link href="#" className="hover:text-bgSecondary transition-colors">
-              Política de privacidade
-            </Link>
-            <span className="hidden md:inline">•</span>
-            <div className="flex items-center gap-2">
-              <span>Idioma</span>
-              <select className="bg-transparent text-gray-500 focus:outline-none">
-                <option value="pt-BR">Português</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-              </select>
+            <div>
+              <h3 className="font-semibold mb-4">Informações</h3>
+              <ul className="space-y-3">
+                <li>
+                  <Link
+                    href="/sobre"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Sobre Nós
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/termos"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Termos & Condições
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/guia"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Guia do Usuário
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/suporte"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Central de Suporte
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/imprensa"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                  >
+                    Informações para Imprensa
+                  </Link>
+                </li>
+              </ul>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-600">
+              © {new Date().getFullYear()} Corre Aqui. Todos os direitos
+              reservados.
+            </p>
+            <button
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              Voltar ao topo
+              <ChevronUp className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>

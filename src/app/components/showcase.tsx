@@ -39,7 +39,7 @@ export default function Showcase() {
           </p>
           {/* Botões de Download */}
           <div className="flex space-x-4">
-            <button className="flex items-center space-x-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+            <Button className="flex items-center space-x-2 px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
               <Link href="https://apps.apple.com">
                 <Button variant="ghost" size="icon">
                   <svg
@@ -56,7 +56,7 @@ export default function Showcase() {
                 <div className="text-xs">Disponível na</div>
                 <div className="font-semibold">APP STORE</div>
               </div>
-            </button>
+            </Button>
             <button className="flex items-center space-x-2 px-6 py-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
               <Link href="https://play.google.com">
                 <Button variant="ghost" size="icon">
