@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 import { Search, Bell, ArrowLeft } from "lucide-react";
 import { MapBackground } from "./map-background";
 import { MapMarker } from "./map-marker";
+
 import { FaShoppingCart, FaTshirt, FaMobileAlt } from "react-icons/fa";
-import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineElectricCar } from "react-icons/md";
 
 interface WorkflowMockupProps {
@@ -13,35 +14,47 @@ interface WorkflowMockupProps {
   delay: number;
 }
 
-const categories = [
-  {
-    icon: <FaShoppingCart />,
-    name: "Mercado",
-    description: "Todas as promoções relacionadas ao mercado.",
-  },
-  {
-    icon: <MdOutlineElectricCar />,
-    name: "Eletrônicos",
-    description: "Promoções em gadgets e eletrônicos.",
-  },
-  {
-    icon: <FaTshirt />,
-    name: "Roupas",
-    description: "Descontos em vestuário e acessórios.",
-  },
-  {
-    icon: <FaMobileAlt />,
-    name: "Celulares",
-    description: "Ofertas em smartphones e acessórios.",
-  },
-];
 export function WorkflowMockup({ step, delay }: WorkflowMockupProps) {
   const stores = [
-    { name: "Carrefour", discount: "25%", x: "30%", y: "20%" },
-    { name: "Magazine Luiza", discount: "40%", x: "70%", y: "35%" },
-    { name: "Casas Bahia", discount: "30%", x: "45%", y: "60%" },
-    { name: "Americanas", discount: "20%", x: "20%", y: "75%" },
-    // { name: "Extra", x: "80%", y: "70%" },
+    {
+      name: "Carrefour",
+      discount: "25%",
+      x: "30%",
+      y: "20%",
+      logo: "/brands/Carrefour.png",
+      validUntil: "31 Jan 2024",
+    },
+    {
+      name: "Magazine Luiza",
+      discount: "40%",
+      x: "70%",
+      y: "35%",
+      logo: "/brands/Magazine Luiza.png",
+      validUntil: "28 Jan 2024",
+    },
+    {
+      name: "Casas Bahia",
+      discount: "30%",
+      x: "45%",
+      y: "60%",
+      logo: "/brands/CasasBahia.jpg",
+      validUntil: "25 Jan 2025",
+    },
+  ];
+
+  const categories = [
+    { icon: <FaShoppingCart />, name: "Mercado" },
+    { icon: <MdOutlineElectricCar />, name: "Eletrônicos" },
+    { icon: <FaTshirt />, name: "Roupas" },
+    { icon: <FaMobileAlt />, name: "Celulares" },
+  ];
+
+  const monthlyData = [
+    { month: "Jun", value: 30 },
+    { month: "Jul", value: 45 },
+    { month: "Ago", value: 80 },
+    { month: "Set", value: 60 },
+    { month: "Out", value: 90 },
   ];
 
   return (
@@ -91,30 +104,23 @@ export function WorkflowMockup({ step, delay }: WorkflowMockupProps) {
                   </motion.div>
                 </div>
               </div>
-              <div className="">
+              <div className="p-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: delay + 2 }}
-                  className="rounded-lg p-3"
                 >
-                  <h3 className="mb-2  text-sm font-medium">
+                  <h3 className="mb-2 text-sm font-medium">
                     Categorias Populares
                   </h3>
-                  {/* Categorias */}
-                  <div className="flex flex-col gap-3">
+                  <div className="grid grid-cols-1 gap-2">
                     {categories.map((category) => (
                       <div
                         key={category.name}
-                        className="flex gap-2 justify-between rounded-md p-4 text-xs text-left bg-slate-100"
+                        className="flex items-center gap-2 rounded-lg bg-gray-50 p-3"
                       >
-                        <div className="flex gap-2">
-                          {category.icon}
-                          {category.name}
-                        </div>
-                        <div className="">
-                          <IoIosArrowForward />
-                        </div>
+                        <span className="text-gray-600">{category.icon}</span>
+                        <span className="text-xs">{category.name}</span>
                       </div>
                     ))}
                   </div>
@@ -143,12 +149,11 @@ export function WorkflowMockup({ step, delay }: WorkflowMockupProps) {
                       variant={store.discount ? "highlighted" : "store"}
                       label={store.name}
                       discount={store.discount}
-                      className={`left-[${store.x}] top-[${store.y}]`}
                       style={{
-                        left: store.x, // Valor vindo da variável
-                        top: store.y, // Valor vindo da variável
-                        position: "absolute", // Garantindo posicionamento absoluto
-                        transform: "translate(-50%, -50%)", // Centraliza no ponto exato
+                        left: store.x,
+                        top: store.y,
+                        position: "absolute",
+                        transform: "translate(-50%, -50%)",
                       }}
                     />
                   </motion.div>
@@ -158,91 +163,126 @@ export function WorkflowMockup({ step, delay }: WorkflowMockupProps) {
           )}
 
           {step === "compare" && (
-            <div className="p-4">
-              <h3 className="mb-4 text-sm font-medium">Comparar Preços</h3>
-              {stores.slice(0, 3).map((store, index) => (
-                <motion.div
-                  key={store.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: delay + index * 0.2 }}
-                  className="mb-3 rounded-lg border p-3"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">{store.name}</span>
-                    {store.discount && (
-                      <span className="rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-600">
-                        {store.discount} OFF
-                      </span>
-                    )}
-                  </div>
-                  <div className="mt-1 text-xs text-gray-500">
-                    {"< 1km de distância"}
-                  </div>
-                  <div className="mt-2 flex items-baseline gap-2">
-                    <span className="text-lg font-bold text-green-600">
-                      R${" "}
-                      {(
-                        99.99 *
-                        (1 - parseInt(store.discount || "0") / 100)
-                      ).toFixed(2)}
-                    </span>
-                    {store.discount && (
-                      <span className="text-xs text-gray-500 line-through">
-                        R$ 99.99
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="h-full bg-white p-4">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold">Minhas Ofertas</h3>
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <div className="space-y-4">
+                {stores.map((store, index) => (
+                  <motion.div
+                    key={store.name}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: delay + index * 0.1 }}
+                    className="flex items-start gap-3 group"
+                  >
+                    <img
+                      src={store.logo}
+                      alt={store.name}
+                      width={30}
+                      height={30}
+                      className="rounded-lg"
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h4 className="font-medium text-sm">{store.name}</h4>
+                          <p className="text-xs text-gray-500">
+                            Válido até {store.validUntil}
+                          </p>
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                          <span className="ml-3 text-xs font-medium text-red-600">
+                            {store.discount} OFF
+                          </span>
+                          {/* <ChevronRight className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" /> */}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           )}
 
           {step === "save" && (
-            <div className="p-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay }}
-                className="rounded-lg bg-green-50 p-4 text-center"
-              >
-                <div className="mb-2 text-2xl font-bold text-green-600">
-                  R$ 59,99
+            <div className="h-full bg-white p-4">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-gray-600">Sua Economia</p>
+                  <p className="text-2xl font-bold">R$ 487,00</p>
                 </div>
-                <div className="text-sm text-green-700">
-                  Você economizou R$ 40,00!
+                <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-100">
+                  <img
+                    src="/members/eduardo.jpeg"
+                    alt="Profile"
+                    width={32}
+                    height={32}
+                  />
                 </div>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: delay + 0.5 }}
-                  className="mt-4 rounded-full bg-green-600 px-4 py-2 text-sm font-medium text-white"
+              </div>
+
+              <div className="relative h-32 mb-6">
+                <svg
+                  className="w-full h-full"
+                  viewBox="0 0 200 100"
+                  preserveAspectRatio="none"
                 >
-                  Aproveitar Oferta
-                </motion.div>
-              </motion.div>
-              <div className="mt-4">
-                <h3 className="mb-2 text-sm font-medium">
-                  Histórico de Economia
-                </h3>
-                {[
-                  { date: "Hoje", value: 40 },
-                  { date: "Última semana", value: 156 },
-                  { date: "Este mês", value: 487 },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.date}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: delay + 0.8 + index * 0.2 }}
-                    className="mb-2 flex items-center justify-between rounded-lg bg-gray-50 p-3"
-                  >
-                    <span className="text-sm text-gray-600">{item.date}</span>
-                    <span className="font-medium text-green-600">
-                      R$ {item.value.toFixed(2)}
-                    </span>
-                  </motion.div>
-                ))}
+                  {/* Line graph */}
+                  <motion.path
+                    d={`M 20,${100 - monthlyData[0].value} 
+                        L ${20 + 40},${100 - monthlyData[1].value} 
+                        L ${20 + 80},${100 - monthlyData[2].value}
+                        L ${20 + 120},${100 - monthlyData[3].value}
+                        L ${20 + 160},${100 - monthlyData[4].value}`}
+                    stroke="#3b82f6"
+                    strokeWidth="2"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.5, delay }}
+                  />
+                </svg>
+                <div className="absolute bottom-0 left-0 right-0 flex justify-between text-xs text-gray-500">
+                  {monthlyData.map((data) => (
+                    <span key={data.month}>{data.month}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-sm font-medium mb-4">Últimas Economias</h3>
+                <div className="space-y-4">
+                  {stores.map((store, index) => (
+                    <motion.div
+                      key={store.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: delay + 0.5 + index * 0.1 }}
+                      className="flex items-center justify-between"
+                    >
+                      <div className="flex items-center gap-4">
+                        <img
+                          src={store.logo}
+                          alt={store.name}
+                          width={30}
+                          height={30}
+                          className="rounded-full"
+                        />
+                        <div>
+                          <p className="font-medium text-xs mr-4">
+                            {store.name}
+                          </p>
+                          <p className="text-xs text-gray-500">Hoje, 09:39</p>
+                        </div>
+                      </div>
+                      <span className="text-red-600 text-xs font-medium">
+                        R$25,00
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
