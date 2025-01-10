@@ -27,7 +27,7 @@ const teamMembers = [
   {
     name: "Icara Rocha",
     role: "Marketing",
-    image: "/members/icara.jpg?height=100&width=100",
+    image: "/members/icar.jpg?height=100&width=100",
     linkedin: "https://www.linkedin.com/in/icara-rocha-880860277/",
   },
   {
