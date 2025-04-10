@@ -14,7 +14,7 @@ export default function Header() {
     >
       <div className="max-w-6xl  container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold text-bgSecondary">
-          CORRE A<span style="color: red;">Q</span>UI!
+          CORRE A<span style={{color: 'red'}}>Q</span>UI!
         </Link>
         <nav className="hidden md:flex items-center space-x-8">
           <Link href="#" className="text-gray-600 hover:text-bgSecondary">
