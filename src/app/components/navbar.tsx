@@ -9,7 +9,7 @@ export function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <Link href="/" className="text-xl font-bold">
-            Corre Aqui
+            CORRE A<span style={{ color: 'red' }}>Q</span>UI!
           </Link>
           <div className="hidden gap-6 md:flex">
             <Link

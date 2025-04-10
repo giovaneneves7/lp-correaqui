@@ -12,7 +12,7 @@ export default function Home() {
         <div className="container relative mx-auto px-4 py-20">
           <div className="relative z-10 text-center">
             <h1 className="mx-auto max-w-4xl bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl xl:text-6xl">
-              Encontre todas as promoções perto de você
+              Seja <span style={{ color : 'red'}}>Rápido</span>, Economize <span style={{ color : 'red'}}>Mais!</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
               Economize tempo e dinheiro encontrando as melhores ofertas na sua

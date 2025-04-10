@@ -5,46 +5,46 @@ import { motion } from "framer-motion";
 
 const brands = [
   {
-    name: "Carrefour",
+    name: "Óticas Dominai",
     x: "20%",
     y: "20%",
     delay: 0,
-    src: "/brands/Carrefour.png",
+    src: "/brands/dominai.jpeg",
   },
   {
-    name: "Extra",
+    name: "Vidrotec Vidraçaria",
     x: "80%",
     y: "25%",
     delay: 0.2,
-    src: "/brands/Extra.jpg",
+    src: "/brands/vidrotec.jpeg",
   },
   {
-    name: "Americanas",
+    name: "Landa Jóias",
     x: "15%",
     y: "60%",
     delay: 0.4,
-    src: "/brands/Americanas.jpeg",
+    src: "/brands/landajoias.jpeg",
   },
   {
-    name: "Magazine Luiza",
+    name: "Frtular Hortifruti",
     x: "75%",
     y: "65%",
     delay: 0.6,
-    src: "/brands/Magazine Luiza.png",
+    src: "/brands/frutlar.jpeg",
   },
   {
-    name: "Casas Bahia",
+    name: "Irecê Rural",
     x: "30%",
     y: "30%",
     delay: 0.8,
-    src: "/brands/CasasBahia.jpg",
+    src: "/brands/irecerural.jpeg",
   },
   {
-    name: "Renner",
+    name: "Beto Vilela Music",
     x: "60%",
     y: "15%",
     delay: 1,
-    src: "/brands/Renner.png",
+    src: "/brands/betovilela.jpeg",
   },
 ];
 
