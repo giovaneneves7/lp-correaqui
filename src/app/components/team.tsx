@@ -9,26 +9,14 @@ const teamMembers = [
   {
     name: "Giovane Neves",
     role: "Founder",
-    image: "/members/Giovane.jpg?height=100&width=100",
+    image: "/members/Giovane.jpeg?height=100&width=100",
     linkedin: "https://www.linkedin.com/in/giovane-neves-555845219/",
-  },
-  {
-    name: "Elia Maria",
-    role: "Marketing",
-    image: "/members/elia.jpg?height=100&width=100",
-    linkedin: "https://www.instagram.com/elia.maria_br",
   },
   {
     name: "Caio Alves",
     role: "Founder",
     image: "/members/caio.jpeg?height=100&width=100",
     linkedin: "https://www.linkedin.com/in/caio-alves-18780623b/",
-  },
-  {
-    name: "Icara Rocha",
-    role: "Marketing",
-    image: "/members/icar.jpg?height=100&width=100",
-    linkedin: "https://www.linkedin.com/in/icara-rocha-880860277/",
   },
   {
     name: "Andesson Reis",

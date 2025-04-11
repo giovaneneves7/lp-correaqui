@@ -13,7 +13,7 @@ html {
 @layer base {
   :root {
     --color-bg-main: #f90a06c7;
-    --color-bg-secondary: #ea7173;
+    --color-bg-secondary: #ff0000;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
